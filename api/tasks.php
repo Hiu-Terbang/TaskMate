@@ -1,11 +1,13 @@
 <?php
 require __DIR__ . '/../config/database.php'; require __DIR__ . '/../config/auth.php'; require_login();
 $uid=(int)$_SESSION['user_id']; $method=$_SERVER['REQUEST_METHOD'];
+$data=$method==='GET'?[]:(json_decode(file_get_contents('php://input'),true)??[]);
+// Beberapa hosting gratis memblokir PUT/PATCH/DELETE, jadi frontend mengirim POST + _method.
+if($method==='POST' && in_array($data['_method']??'',['PUT','PATCH','DELETE'],true)) $method=$data['_method'];
 if($method==='GET') {
  $q=$pdo->prepare('SELECT id,title,category,DATE_FORMAT(deadline,"%Y-%m-%d") deadline,completed FROM tasks WHERE user_id=? ORDER BY deadline,id DESC');
  $q->execute([$uid]); json_out(['tasks'=>$q->fetchAll()]);
 }
-$data=json_decode(file_get_contents('php://input'),true)??[];
 if($method==='POST') {
  $title=trim($data['title']??''); $cat=trim($data['category']??''); $deadline=$data['deadline']??'';
  $dt=DateTime::createFromFormat('Y-m-d',$deadline);

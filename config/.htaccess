@@ -1,0 +1,5 @@
+# Folder ini hanya untuk di-include oleh PHP, bukan diakses langsung.
+Require all denied
+<IfModule !mod_authz_core.c>
+  Deny from all
+</IfModule>
