@@ -1,5 +1,5 @@
 <?php
-require '../config/database.php'; require '../config/auth.php'; require_login();
+require __DIR__ . '/../config/database.php'; require __DIR__ . '/../config/auth.php'; require_login();
 if($_SERVER['REQUEST_METHOD']!=='POST') json_out(['message'=>'Method tidak didukung.'],405);
 $d=json_decode(file_get_contents('php://input'),true)??[];
 $s=filter_var($d['semester']??null,FILTER_VALIDATE_INT); $y=trim($d['academic_year']??'');

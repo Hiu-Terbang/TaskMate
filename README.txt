@@ -1,13 +1,22 @@
 TASKMATE - PHP NATIVE + MYSQL
 
 INSTALASI DI XAMPP
-1. Extract ZIP ini. Di dalamnya ada folder TaskMate_Backend.
-2. Salin folder TaskMate_Backend ke C:\\xampp.NEW\\htdocs\\
+1. Clone repo ini atau download ZIP dari GitHub, lalu beri nama foldernya TaskMate.
+2. Salin folder TaskMate ke folder htdocs XAMPP kamu (contoh: C:\\xampp\\htdocs\\).
 3. Jalankan XAMPP Control Panel, lalu nyalakan Apache dan MySQL.
 4. Pastikan MySQL menggunakan port 3307. Pengaturannya ada di config/database.php.
 5. Buka http://localhost/phpmyadmin/ (sesuaikan port phpMyAdmin jika instalasi XAMPP kamu mengaturnya berbeda).
 6. Jika database taskmate sudah berisi data, JANGAN import database.sql lagi. Perubahan navigasi ini tidak membutuhkan penghapusan atau pembuatan ulang database.
-7. Buka http://localhost/TaskMate_Backend/ lalu login dengan akun yang sudah ada.
+7. Untuk instalasi baru, import database.sql lewat phpMyAdmin.
+8. Buka http://localhost/TaskMate/ lalu daftar atau login.
+
+STRUKTUR FOLDER
+- config/database.php : koneksi database (host, nama database, user, password, port)
+- config/auth.php     : session dan helper login
+- api/tasks.php       : API tugas (GET, POST, PUT, PATCH, DELETE)
+- api/profile.php     : API simpan semester dan tahun akademik
+- *.php di root       : halaman (index, login, register, logout, lupa & reset password)
+- script.js, style.css: frontend
 
 NAVIGASI
 - Dashboard: ringkasan akademik, statistik tugas, produktivitas, dan tugas terdekat.

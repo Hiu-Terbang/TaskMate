@@ -1,5 +1,5 @@
 <?php
-require '../config/database.php'; require '../config/auth.php'; require_login();
+require __DIR__ . '/../config/database.php'; require __DIR__ . '/../config/auth.php'; require_login();
 $uid=(int)$_SESSION['user_id']; $method=$_SERVER['REQUEST_METHOD'];
 if($method==='GET') {
  $q=$pdo->prepare('SELECT id,title,category,DATE_FORMAT(deadline,"%Y-%m-%d") deadline,completed FROM tasks WHERE user_id=? ORDER BY deadline,id DESC');
