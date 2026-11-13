@@ -31,6 +31,8 @@ showDate();
 if (taskDeadline) taskDeadline.min = isoToday();
 
 async function api(url, method = 'GET', body = null) {
+    // PUT/PATCH/DELETE dikirim sebagai POST + _method supaya jalan di hosting yang memblokirnya.
+    if (method !== 'GET' && method !== 'POST') { body = { ...(body || {}), _method: method }; method = 'POST'; }
     const options = { method, headers: { 'Content-Type': 'application/json' } };
     if (body) options.body = JSON.stringify(body);
     const response = await fetch(url, options);
