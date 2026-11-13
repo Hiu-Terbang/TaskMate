@@ -87,12 +87,12 @@ function makeTaskCard(task, options = {}) {
         const edit = document.createElement('button');
         edit.className = 'edit-btn';
         edit.type = 'button';
-        edit.textContent = 'Edit';
+        edit.innerHTML = '<iconify-icon icon="solar:pen-2-linear" aria-hidden="true"></iconify-icon>Edit';
         edit.onclick = () => startEdit(task);
         const del = document.createElement('button');
         del.className = 'delete-btn';
         del.type = 'button';
-        del.textContent = '×';
+        del.innerHTML = '<iconify-icon icon="solar:trash-bin-minimalistic-linear" aria-hidden="true"></iconify-icon>';
         del.setAttribute('aria-label', 'Hapus tugas');
         del.onclick = async () => {
             if (!confirm('Hapus tugas ini?')) return;
@@ -113,11 +113,12 @@ function renderDashboard() {
     const done = tasks.filter(task => task.completed).length;
     const pending = total - done;
     const percent = total ? Math.round(done / total * 100) : 0;
-    $('total-count').textContent = total;
-    $('pending-count').textContent = pending;
-    $('completed-count').textContent = done;
+    const setCount = (id, n) => window.countTo ? window.countTo($(id), n) : ($(id).textContent = n);
+    setCount('total-count', total);
+    setCount('pending-count', pending);
+    setCount('completed-count', done);
     $('progress-number').textContent = percent + '%';
-    $('progress-ring').style.background = `conic-gradient(var(--primary) ${percent}%, #eeedf6 ${percent}%)`;
+    $('progress-ring').style.background = `conic-gradient(var(--primary) ${percent}%, var(--track) ${percent}%)`;
     $('progress-caption').textContent = !total
         ? 'Yuk, mulai kerjakan tugas pertamamu!'
         : percent === 100 ? 'Mantap! Semua tugas sudah selesai.'
