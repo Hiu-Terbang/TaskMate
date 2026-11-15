@@ -47,10 +47,6 @@ Aplikasi web sederhana buat mahasiswa ngatur tugas kuliah: catat tugas per mata 
 > Kalau database `taskmate` sudah berisi data, tidak perlu import `database.sql` lagi.
 > Kalau tampilan belum berubah setelah update file, tekan `Ctrl + F5`.
 
-## Deploy ke hosting
-
-Panduan upload ke hosting gratis (InfinityFree) ada di **[DEPLOY.md](DEPLOY.md)**.
-
 ## Struktur folder
 
 ```
